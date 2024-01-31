@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, height =device-height, viewport-fit=cover">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.4/socket.io.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+  <title>Cityfarm</title>
+  <style>
+    body {background-color: #0d0d0d;
+      font-family: "Inter";
+
+    }
+    #time {
+      font-family: "Inter", sans-serif;
+      font-weight: 900;
+      font-size: 35px;
+      color: #ffffff;
+      position: absolute;
+      top: 0.5rem;
+      right: 10.2rem;
+      width: 3rem;
+
+    }
+    #div1 {
+      background-color: #0d0d0d;
+      width: 89rem;
+      height: 0.1rem;
+      position: absolute;
+      top: 3.8rem;
+      left: 0.7rem;
+
+    }
+
+    h1 {
+      position: absolute;
+      top: 1%;
+      left: 10%;
+      color: #c9c9c9;
+      width: 111px;
+      height: auto;
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 600;
+      font-size: 35px;
+      line-height: 42px;
+      display: flex;
+      align-items: center;
+      text-align: center;
+    }
+
+    h2 {
+      position: absolute;
+      top: 1%;
+      left: 40%;
+      color: #c9c9c9;
+      width: auto;
+      height: auto;
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 600;
+      font-size: 120%;
+      line-height: 42px;
+      display: flex;
+      align-items: center;
+      text-align: center;
+    }
+
+    h3 {
+      position: absolute;
+      top: 0.8rem;
+      right: 29rem;
+      color: #c9c9c9;
+      width: auto;
+      height: auto;
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 600;
+      font-size: 35px;
+      line-height: 42px;
+      display: flex;
+      align-items: center;
+      text-align: center;
+    }
+
+    #square {
+      height: 98%;
+      background-color: #262525;
+      border-radius: 10px;
+      display: flex;
+      position: absolute;
+      top: 1%;
+      bottom: 1%;
+      width: 80%;
+      left: 0.5%;
+    }
+    #square2 {
+      width: 18.5%;
+      height: 98%;
+      background-color: #262525;
+      border-radius: 10px;
+      display: flex;
+      position: absolute;
+      top: 1%;
+      bottom: 1%;
+      right: 0.5%;
+
+    }
+
+
+  </style>
+</head>
+<body>
+<div id="square2"></div>
+<div id="square"></div>
+<p id="time"></p>
+<p id="div1"></p>
+<div id="data-container"></div>
+<h1>1 Ярус</h1>
+<h2>2 Ярус</h2>
+<h3>3 Ярус</h3>
+
+
+<script>
+  type="text/javascript">
+    var socket = io.connect('http://' + document.domain + ':' + location.port + '/time');
+
+  socket.on('update_time', function(data) {
+    $('#time').html(data.time);
+  });
+</script>
+</body>
+</html>
