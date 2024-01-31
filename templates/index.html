@@ -127,13 +127,14 @@
 <h3>3 Ярус</h3>
 
 
-<script>
-  type="text/javascript">
+<script type="text/javascript">
+  $(document).ready(function(){
     var socket = io.connect('http://' + document.domain + ':' + location.port + '/time');
-
-  socket.on('update_time', function(data) {
-    $('#time').html(data.time);
+    socket.on('time_update', function(data){
+      $('#time').text(data.time);
+    });
   });
+</script>
 </script>
 </body>
 </html>
