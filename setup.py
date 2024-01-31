@@ -3,4 +3,3 @@ import datetime
 
 def get_current_time():
     return datetime.datetime.now().strftime("%H:%M:%S")
-current_time = get_current_time()
