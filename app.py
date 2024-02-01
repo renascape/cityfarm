@@ -9,6 +9,9 @@ app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app)
 
 
+current_thread = None
+
+
 @socketio.on('connect')
 def test_connect():
     print('Client connected')
@@ -20,11 +23,16 @@ def background_thread():
         time.sleep(1)
 
 
+@app.before_request
+def activate_job():
+    global current_thread
+    if current_thread is None or not current_thread.is_alive():
+        current_thread = threading.Thread(target=background_thread)
+        current_thread.start()
+
+
 @app.route('/')
 def index():
-    thread = threading.Thread(target=background_thread)
-    thread.daemon = True
-    thread.start()
     return render_template('index.html')
 
 
